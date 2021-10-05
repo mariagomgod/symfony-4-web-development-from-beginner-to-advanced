@@ -16,5 +16,13 @@
         <li>Your controller at <code><a href="{{ 'C:/Users/María/symfony-4-web-development-from-beginner-to-advanced/my_project_name/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/Users/María/symfony-4-web-development-from-beginner-to-advanced/my_project_name/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
     </ul>
+
+    <ul>
+        {% for user in users %}
+        <li>{{ user }}</li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}
+
+
