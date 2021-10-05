@@ -19,6 +19,10 @@ class DefaultController extends AbstractController
 
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
+        $this->addFlash('notice', 'Your changes were saved!');
+
+        $this->addFlash('warning', 'Your changes were saved!');
+
        //$entityManager->flush(); // flush() save all the users in the database
 
         return $this->render('default/index.html.twig', [
