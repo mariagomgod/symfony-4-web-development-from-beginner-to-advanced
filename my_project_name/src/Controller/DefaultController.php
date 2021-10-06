@@ -22,15 +22,22 @@ class DefaultController extends AbstractController
 
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
+        //exit($request->query->get('page', 'default'));
+
+        exit($request->server->get('HTTP_HOST'));
+        $request->isXmlHttpRequest(); // Is it an Ajax request?
+        $request->request->get('page');
+        $request->files->get('foo'); // foo is the HTML element
+
         //exit($request->cookies->get('PHPSESSID'));
 
-        $session->set('name', 'session value');
+        //$session->set('name', 'session value');
         //$session->remove(('name'));
-        $session->clear();
-        if ($session->has('name')) 
-        {
-            exit($session->get('name'));
-        }
+        //$session->clear();
+        //if ($session->has('name')) 
+        //{
+        //    exit($session->get('name'));
+        //}
 
         //$this->addFlash('notice', 'Your changes were saved!');
 
