@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends AbstractController
 {
@@ -78,6 +79,18 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * @Route("/generate-url/{param?}", name="generate_url")
+     */
+    public function generate_url(): Response
+    {
+        exit($this->generateUrl(
+            'generate_url',
+            array('param' => 10),
+            UrlGeneratorInterface::ABSOLUTE_URL
+        ));
+    }
+
+    /**
      * @Route("/blog/{page?}", name="blog_list", requirements={"page"="\d+"})
      */
     public function index2()
@@ -110,5 +123,31 @@ class DefaultController extends AbstractController
     {
         return new Response('Translated routes');
     }
+
+    /**
+     * @Route("/download")
+     */
+    public function download()
+    {
+        $path = $this->getParameter('download_directory');
+        return $this->file($path.'file.pdf');
+    }
+
+    /**
+     * @Route("/redirect-test")
+     */
+    public function redirectTest()
+    {
+        return $this->redirectToRoute('route_to_redirect', array('param' => 10));
+    }
+
+    /**
+     * @Route("/url-to-redirect/{param?}", name="route_to_redirect")
+     */
+    public function methodToRedirect()
+    {
+        exit('Test redirection');
+    }
+
 
 }
