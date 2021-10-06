@@ -14,6 +14,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends AbstractController
 {
+    public function __construct()
+    {
+        // use $logger service
+    }
+
     /**
      * @Route("/", name="default")
      */
@@ -23,10 +28,10 @@ class DefaultController extends AbstractController
 
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
-        if ($users) 
-        {
-            throw $this->createNotFoundException('The users do not exist');
-        }
+        //if ($users) 
+        //{
+        //    throw $this->createNotFoundException('The users do not exist');
+        //}
 
         //exit($request->query->get('page', 'default'));
 
