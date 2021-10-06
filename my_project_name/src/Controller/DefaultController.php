@@ -10,6 +10,7 @@ use App\Services\GiftsService;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class DefaultController extends AbstractController
 {
@@ -22,12 +23,17 @@ class DefaultController extends AbstractController
 
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
+        if ($users) 
+        {
+            throw $this->createNotFoundException('The users do not exist');
+        }
+
         //exit($request->query->get('page', 'default'));
 
-        exit($request->server->get('HTTP_HOST'));
-        $request->isXmlHttpRequest(); // Is it an Ajax request?
-        $request->request->get('page');
-        $request->files->get('foo'); // foo is the HTML element
+        //exit($request->server->get('HTTP_HOST'));
+        //$request->isXmlHttpRequest(); // Is it an Ajax request?
+        //$request->request->get('page');
+        //$request->files->get('foo'); // foo is the HTML element
 
         //exit($request->cookies->get('PHPSESSID'));
 
