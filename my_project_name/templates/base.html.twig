@@ -8,12 +8,14 @@
         {% block stylesheets %}
             {#{{ encore_entry_link_tags('app') }}#}
         {% endblock %}
-
-        {% block javascripts %}
-
-        {% endblock %}
     </head>
     <body>
         {% block body %}{% endblock %}
+        
+        {% block javascripts %}
+            <script>
+                alert(1);
+            </script>
+        {% endblock %}
     </body>
 </html>

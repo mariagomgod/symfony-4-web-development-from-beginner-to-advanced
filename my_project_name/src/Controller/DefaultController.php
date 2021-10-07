@@ -21,7 +21,7 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/", name="default")
+     * @Route("/page", name="default")
      */
     public function index(GiftsService $gifts, Request $request, SessionInterface $session): Response
     {
@@ -147,6 +147,25 @@ class DefaultController extends AbstractController
     public function methodToRedirect()
     {
         exit('Test redirection');
+    }
+
+    /**
+     * @Route("/forwarding-to-controller")
+     */
+    public function forwardingToController()
+    {
+        return $this->forward(
+            'App\Controller\DefaultController::methodToForwardTo',
+            array('param' => '1')
+        );
+    }
+
+    /**
+     * @Route("/url-to-forward-to/{param?}", name="route_to_forward_to")
+     */
+    public function methodToForwardTo($param)
+    {
+        exit('Test controller forwarding - '.$param);
     }
 
 
