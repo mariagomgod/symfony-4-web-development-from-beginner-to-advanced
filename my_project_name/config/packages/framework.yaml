@@ -1,5 +1,9 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
+    # https://stackoverflow.com/questions/65863552/how-to-disable-cache-in-symfony-5-2
+    cache:
+        app: cache.adapter.null
+        system: cache.adapter.null
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true
     http_method_override: false
@@ -16,6 +20,12 @@ framework:
     #fragments: true
     php_errors:
         log: true
+
+# https://stackoverflow.com/questions/65863552/how-to-disable-cache-in-symfony-5-2
+services:
+    cache.adapter.null:
+        class: Symfony\Component\Cache\Adapter\NullAdapter
+        arguments: [~] # small trick to avoid arguments errors on compile-time.
 
 when@test:
     framework:
