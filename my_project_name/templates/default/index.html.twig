@@ -21,10 +21,15 @@
         <li>Your template at <code><a href="{{ 'C:/Users/María/symfony-4-web-development-from-beginner-to-advanced/my_project_name/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
     </ul>
 
+    {{render(controller(
+        'App\\Controller\\DefaultController::mostPopularPosts',
+        {'number': 5}
+    ))}}
+
     {{ app.user }}
     {{ app.request.get('param') }}
     {{ app.environment }}
-    {{ dump(app.session) }}
+    {#{{ dump(app.session) }}#}
     <p>The google tracking code is: {{ ga_code }}</p>
 
     {{ path('home') }} <br>
