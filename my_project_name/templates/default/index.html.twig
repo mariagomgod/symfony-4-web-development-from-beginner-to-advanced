@@ -40,11 +40,11 @@
     <img src="{{ absolute_url(asset('images/logo.png')) }}" alt="Symfony 4 course" />
     {{ string|escape('html') }}
 
-    <ul>
+    {#<ul>
         {% for user in users %}
         <li>{{ user.name }} - you won {{ random_gift[loop.index0] }}</li>
         {% endfor %}
-    </ul>
+    </ul>#}
 
     {% for i in 1..10 %}
         <div class="{{ cycle(['even', 'odd'], i) }}">
@@ -52,19 +52,19 @@
         </div>
     {% endfor %}
 
-    {% for message in app.flashes('notice') %}
+    {#{% for message in app.flashes('notice') %}
         <div class="flash-notice">
             {{ message }}
         </div>
-    {% endfor %}
+    {% endfor %}#}
 
-    {% for label, messages in app.flashes %}
+    {#{% for label, messages in app.flashes %}
         {% for message in messages %}
             <div class="flash-{{ label }}">
                 {{ message }}
             </div>
         {% endfor %}
-    {% endfor %}
+    {% endfor %}#}
 </div>
 {% endblock %}
 

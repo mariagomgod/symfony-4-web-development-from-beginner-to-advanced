@@ -23,11 +23,11 @@ class DefaultController extends AbstractController
     /**
      * @Route("/home", name="default", name="home")
      */
-    public function index(GiftsService $gifts, Request $request, SessionInterface $session): Response
+    public function index(Request $request): Response
     {
         //$users = [];
 
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        //$users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
         //if ($users) 
         //{
@@ -70,11 +70,20 @@ class DefaultController extends AbstractController
         //$response->send();
 
        //$entityManager->flush(); // flush() save all the users in the database
+        
+       $entityManager = $this->getDoctrine()->getManager();
+
+       $user = new User();
+       $user->setName('Robert');
+       $entityManager->persist($user);
+       $entityManager->flush();
+
+       dump('A new user was saved with the id of '. $user->getId());
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
-            'users' => $users,
-            'random_gift' => $gifts->gifts,
+            //'users' => $users,
+            //'random_gift' => $gifts->gifts,
         ]);
     }
 
