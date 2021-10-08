@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
+use App\Entity\Video;
 use App\Services\GiftsService;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
@@ -125,13 +126,30 @@ class DefaultController extends AbstractController
        //dump($user);
 
        // DOCTRINE LIFECYCLECALLBACKS OPTION
-       $entityManager = $this->getDoctrine()->getManager();
+       /*$entityManager = $this->getDoctrine()->getManager();
        $user = new User();
        $user->setName('Susan');
        $entityManager->persist($user);
+       $entityManager->flush();*/
+
+       // DOCTRINE ONE-TO-MANY & MANY-TO-ONE RELATIONSHIPS
+       $entityManager = $this->getDoctrine()->getManager();
+       $user = new User();
+       $user->setName('Robert');
+       
+       for ($i = 1; $i <= 3; $i++)
+       {
+           $video = new Video();
+           $video->setTitle('Video title - '.$i);
+           $user->addVideo($video);
+           $entityManager->persist($video);
+        }
+
+       $entityManager->persist($user);
        $entityManager->flush();
 
-
+        dump('Created a video with the id of '.$video->getId());
+        dump('Created a user with the id of '.$user->getId());
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
