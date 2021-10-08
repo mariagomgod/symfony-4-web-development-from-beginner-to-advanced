@@ -27,7 +27,7 @@ class DefaultController extends AbstractController
     {
         //$users = [];
 
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        //$users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
         //if ($users) 
         //{
@@ -71,6 +71,7 @@ class DefaultController extends AbstractController
 
        //$entityManager->flush(); // flush() save all the users in the database
         
+       // DOCTRINE CRUD-CREATE
        /*$entityManager = $this->getDoctrine()->getManager();
 
        $user = new User();
@@ -80,13 +81,35 @@ class DefaultController extends AbstractController
 
        dump('A new user was saved with the id of '. $user->getId());*/
 
-       $repository = $this->getDoctrine()->getRepository(User::class);
+       // DOCTRINE CRUD-READ
+       //$repository = $this->getDoctrine()->getRepository(User::class);
        //$user = $repository->find(1);
        //$user = $repository->findOneBy(['name' => 'Robert']);
       //$user = $repository->findOneBy(['name' => 'Robert', 'id' => 5]);
        //$users = $repository->findBy(['name' => 'Robert'], ['id' => 'DESC']);
-       $users = $repository->findAll();
-       dump($users);
+       //$users = $repository->findAll();
+       //dump($users);
+
+       // DOCTRINE CRUD-UPDATE
+       /*$entityManager = $this->getDoctrine()->getManager();
+       $id = 1;
+       $user = $entityManager->getRepository(User::class)->find($id);
+
+       if (!$user)
+       {
+           throw $this->createNotFoundException('No user found for id '.$id);
+       }
+       
+       $user->setName('New user name!');
+       $entityManager->flush();
+       dump($user);*/
+
+       // DOCTRINE CRUD-DELETE
+       /*$entityManager = $this->getDoctrine()->getManager();
+       $id = 2;
+       $user = $entityManager->getRepository(User::class)->find($id);
+       $entityManager->remove($user);
+       $entityManager->flush();*/
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
