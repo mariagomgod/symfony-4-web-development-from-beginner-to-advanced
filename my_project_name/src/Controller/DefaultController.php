@@ -21,9 +21,9 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/home", name="default", name="home")
+     * @Route("/home/{id}", name="default", name="home")
      */
-    public function index(Request $request): Response
+    public function index(Request $request, User $user): Response
     {
         //$users = [];
 
@@ -113,12 +113,16 @@ class DefaultController extends AbstractController
 
        //DOCTRINE RAW QUERIES
        /** @var $entityManager Doctrine\ORM\EntityManager */
-       $entityManager = $this->getDoctrine()->getManager();
+       /*$entityManager = $this->getDoctrine()->getManager();
        $conn = $entityManager->getConnection();
        $sql = 'SELECT * FROM user u WHERE u.id > :id';
        $stmt = $conn->prepare($sql);
        $stmt->execute(['id' => 1]);
-       dump($stmt->fetchAll());
+       dump($stmt->fetchAll());*/
+
+       // DOCTRINE PARAM CONVERTER
+       //$entityManager = $this->getDoctrine()->getManager();
+       dump($user);
 
 
         return $this->render('default/index.html.twig', [
