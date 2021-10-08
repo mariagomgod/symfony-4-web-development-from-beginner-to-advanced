@@ -111,6 +111,16 @@ class DefaultController extends AbstractController
        $entityManager->remove($user);
        $entityManager->flush();*/
 
+       //DOCTRINE RAW QUERIES
+       /** @var $entityManager Doctrine\ORM\EntityManager */
+       $entityManager = $this->getDoctrine()->getManager();
+       $conn = $entityManager->getConnection();
+       $sql = 'SELECT * FROM user u WHERE u.id > :id';
+       $stmt = $conn->prepare($sql);
+       $stmt->execute(['id' => 1]);
+       dump($stmt->fetchAll());
+
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             //'users' => $users,
