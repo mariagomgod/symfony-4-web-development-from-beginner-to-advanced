@@ -21,9 +21,9 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/home/{id}", name="default", name="home")
+     * @Route("/home", name="default", name="home")
      */
-    public function index(Request $request, User $user): Response
+    public function index(Request $request): Response
     {
         //$users = [];
 
@@ -122,7 +122,15 @@ class DefaultController extends AbstractController
 
        // DOCTRINE PARAM CONVERTER
        //$entityManager = $this->getDoctrine()->getManager();
-       dump($user);
+       //dump($user);
+
+       // DOCTRINE LIFECYCLECALLBACKS OPTION
+       $entityManager = $this->getDoctrine()->getManager();
+       $user = new User();
+       $user->setName('Susan');
+       $entityManager->persist($user);
+       $entityManager->flush();
+
 
 
         return $this->render('default/index.html.twig', [
