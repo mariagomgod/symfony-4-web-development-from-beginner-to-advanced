@@ -27,7 +27,7 @@ class DefaultController extends AbstractController
     {
         //$users = [];
 
-        //$users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
 
         //if ($users) 
         //{
@@ -71,14 +71,22 @@ class DefaultController extends AbstractController
 
        //$entityManager->flush(); // flush() save all the users in the database
         
-       $entityManager = $this->getDoctrine()->getManager();
+       /*$entityManager = $this->getDoctrine()->getManager();
 
        $user = new User();
        $user->setName('Robert');
        $entityManager->persist($user);
        $entityManager->flush();
 
-       dump('A new user was saved with the id of '. $user->getId());
+       dump('A new user was saved with the id of '. $user->getId());*/
+
+       $repository = $this->getDoctrine()->getRepository(User::class);
+       //$user = $repository->find(1);
+       //$user = $repository->findOneBy(['name' => 'Robert']);
+      //$user = $repository->findOneBy(['name' => 'Robert', 'id' => 5]);
+       //$users = $repository->findBy(['name' => 'Robert'], ['id' => 'DESC']);
+       $users = $repository->findAll();
+       dump($users);
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
