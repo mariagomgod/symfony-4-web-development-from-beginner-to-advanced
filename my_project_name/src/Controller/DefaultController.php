@@ -133,7 +133,7 @@ class DefaultController extends AbstractController
        $entityManager->flush();*/
 
        // DOCTRINE ONE-TO-MANY & MANY-TO-ONE RELATIONSHIPS
-       $entityManager = $this->getDoctrine()->getManager();
+       //$entityManager = $this->getDoctrine()->getManager();
        /*$user = new User();
        $user->setName('Robert');
        
@@ -154,11 +154,27 @@ class DefaultController extends AbstractController
         //$video = $this->getDoctrine()->getRepository(Video::class)->find(1);
         //dump($video->getUser()->getName());
 
+        /*$user = $this->getDoctrine()->getRepository(User::class)->find(1);
+        foreach($user->getVideos() as $video)
+        {
+            dump($video->getTitle());
+        }*/
+
+        $entityManager = $this->getDoctrine()->getManager();
         $user = $this->getDoctrine()->getRepository(User::class)->find(1);
+
+        $video = $this->getDoctrine()->getRepository(Video::class)->find(1);
+
+        $user->removeVideo($video);
+        $entityManager->flush();
         foreach($user->getVideos() as $video)
         {
             dump($video->getTitle());
         }
+
+        /*$entityManager->remove($user);
+        $entityManager->flush();
+        dump($user);*/
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
