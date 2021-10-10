@@ -34,6 +34,7 @@ class InheritanceEntitiesFixtures extends Fixture
             {
                $video = new Video;
                $video->setFilename('video name of user' .$i);
+               $video->setTitle('video title of user' .$i);
                $video->setDescription('video description of user ' .$i);
                $video->setSize(321);
                $video->setFormat('mpeg-2');
