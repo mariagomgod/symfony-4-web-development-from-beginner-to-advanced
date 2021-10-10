@@ -25,7 +25,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/home", name="default", name="home")
      */
-    public function index(Request $request): Response
+    public function index(GiftsService $gifts, Request $request): Response
     {
         //$users = [];
 
@@ -219,7 +219,7 @@ class DefaultController extends AbstractController
         dump($user2->getFollowing()->count()); // users that user2 is following.*/
 
         // DOCTRINE QUERY BUILDER AND EAGER LOADING
-        $entityManager = $this->getDoctrine()->getManager();
+        //$entityManager = $this->getDoctrine()->getManager();
 
         /*$user = new User();
         $user->setName('Robert');
@@ -235,13 +235,17 @@ class DefaultController extends AbstractController
         $entityManager->persist($user);
         $entityManager->flush();*/
 
-        $user = $entityManager->getRepository(User::class)->findWithVideos(1);
-        dump($user);
+        //$user = $entityManager->getRepository(User::class)->findWithVideos(1);
+        //dump($user);
+
+        //DOCTRINE POLYMORPHIC QUERIES
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        dump('abc123');
 
         return $this->render('default/index.html.twig', [
-            'controller_name' => 'DefaultController'
-            //'users' => $users,
-            //'random_gift' => $gifts->gifts,
+            'controller_name' => 'DefaultController',
+            'users' => $users,
+            'random_gift' => $gifts->gifts,
         ]);
     }
 
