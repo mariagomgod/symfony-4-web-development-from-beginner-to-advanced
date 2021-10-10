@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use App\Entity\Video;
 use App\Entity\Address;
+use App\Entity\Author;
+use App\Entity\File;
+use App\Entity\Pdf;
 use App\Services\GiftsService;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
@@ -239,9 +242,17 @@ class DefaultController extends AbstractController
         //dump($user);
 
         //DOCTRINE POLYMORPHIC QUERIES
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
-        dump('abc123');
+        $entityManager = $this->getDoctrine()->getManager();
+        $author = $entityManager->getRepository(Author::class)->findByIdWithPdf(3);
+        dump($author);
+        foreach($author->getFiles() as $file)
+        {
+            //if($file instanceof Pdf) // we get only the pdf type files which belongs to the author
+            dump($file->getFileName());
+        }
 
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
             'users' => $users,
