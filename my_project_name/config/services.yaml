@@ -11,9 +11,7 @@ services:
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
         autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
-        bind:
-            $globalParam: 'global param to be used by all services defined in this file'
-
+       
     # makes classes in src/ available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     App\:
@@ -30,11 +28,11 @@ services:
 
     #App\Controller\DefaultController:
     #     bind:
-    #         $logger: '@monolog.logger.doctrine'  
-
+    #         $logger: '@monolog.logger.doctrine' 
+    
     App\Services\MyService:
-        arguments:
-            $second_service: '@App\Services\MySecondService'
-            #$param2: 'some parameter 2'
-            #$adminEmail: '%admin_email%'
+        autowire: true
+      
+
+  
 
