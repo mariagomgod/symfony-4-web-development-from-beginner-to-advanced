@@ -261,8 +261,12 @@ class DefaultController extends AbstractController
         //$service->someAction();
 
         // SERVICES-PROPERTY INJECTION
+        //$entityManager = $this->getDoctrine()->getManager();
+        //$service->someAction();
+
+        // SERVICES-LAZY SERVICES
         $entityManager = $this->getDoctrine()->getManager();
-        $service->someAction();
+        dump($service->secService->someMethod());
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
