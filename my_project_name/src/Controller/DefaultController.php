@@ -32,7 +32,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/home", name="default", name="home")
      */
-    public function index(Request $request, MyService $service, ContainerInterface $container): Response
+    public function index(Request $request): Response
     {
         //$users = [];
 
@@ -270,8 +270,15 @@ class DefaultController extends AbstractController
         //dump($service->secService->someMethod());
 
         // SERVICE-ALIASES
+        //$entityManager = $this->getDoctrine()->getManager();
+        //dump($container->get('app.myservice'));
+
+        // SERVICE-TAGS
         $entityManager = $this->getDoctrine()->getManager();
-        dump($container->get('app.myservice'));
+        $user = $entityManager->getRepository(User::class)->find(1);
+        $user->setName('Rob');
+        $entityManager->persist($user);
+        $entityManager->flush();
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',

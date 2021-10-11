@@ -40,13 +40,18 @@ services:
     #App\Services\MySecondService:
         #lazy: true  
     
-    app.myservice:
-        class: App\Services\MyService
-        arguments:
-            $one: 'something'
-        public: true
+    #app.myservice:
+        #class: App\Services\MyService
+        #arguments:
+            #$one: 'something'
+        #public: true
     
-    App\Services\MyService: '@app.myservice'
+    #App\Services\MyService: '@app.myservice'
+
+    App\Services\MyService:
+        tags:
+            - { name: doctrine.event_listener, event: postFlush } 
+            - { name: kernel.cache_clearer }
     
     
     

@@ -2,15 +2,27 @@
 
 namespace App\Services;
 use App\Services\MySecondService;
+use Doctrine\ORM\Event\PostFlushEventArgs;
 
 class MyService {
 
-    public function __construct($one)
+    public function __construct()
     {
-        dump('hi!');
-        dump($one);
+        dump('hello!');
+        //dump($one);
         //dump($service);
         //$this->secService = $service;
+    }
+
+    public function postFlush(PostFlushEventArgs $args)
+    {
+        dump('hello postflush!');
+        dump($args);
+    }
+
+    public function clear()
+    {
+        dump('clear... ');
     }
 
     //use OptionalServiceTrait;
