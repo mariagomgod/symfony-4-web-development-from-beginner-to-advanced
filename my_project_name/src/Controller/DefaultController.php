@@ -257,6 +257,10 @@ class DefaultController extends AbstractController
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();*/
 
         // SERVICES-SETTER INJECTION FOR OPTIONAL DEPENDENCIES
+        //$entityManager = $this->getDoctrine()->getManager();
+        //$service->someAction();
+
+        // SERVICES-PROPERTY INJECTION
         $entityManager = $this->getDoctrine()->getManager();
         $service->someAction();
 

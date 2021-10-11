@@ -5,17 +5,21 @@ use App\Services\MySecondService;
 
 class MyService {
 
-    use OptionalServiceTrait;
-    
-    public function __construct()
-    {
-        //dump('');
-    }
+    //use OptionalServiceTrait;
 
+    public $logger;
+    public $my;
+    
     public function someAction()
     {
-        dump($this->service->doSomething2());
+        dump($this->logger);
+        dump($this->my);
     }
+
+    //public function someAction()
+    //{
+    //    dump($this->service->doSomething2());
+    //}
 
     /**
      * @required
