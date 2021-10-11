@@ -30,15 +30,26 @@ services:
     #     bind:
     #         $logger: '@monolog.logger.doctrine' 
     
-    App\Services\MyService:
+    #App\Services\MyService:
         #properties:
             #my: '@App\Services\MySecondService'
             #logger: '@monolog.logger'
-        arguments:
-            $service: '@App\Services\MySecondService' 
+        #arguments:
+            #$service: '@App\Services\MySecondService' 
     
-    App\Services\MySecondService:
-        lazy: true    
+    #App\Services\MySecondService:
+        #lazy: true  
+    
+    app.myservice:
+        class: App\Services\MyService
+        arguments:
+            $one: 'something'
+        public: true
+    
+    App\Services\MyService: '@app.myservice'
+    
+    
+    
       
 
   

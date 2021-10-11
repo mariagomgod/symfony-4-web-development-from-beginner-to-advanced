@@ -5,10 +5,12 @@ use App\Services\MySecondService;
 
 class MyService {
 
-    public function __construct($service)
+    public function __construct($one)
     {
-        dump($service);
-        $this->secService = $service;
+        dump('hi!');
+        dump($one);
+        //dump($service);
+        //$this->secService = $service;
     }
 
     //use OptionalServiceTrait;
