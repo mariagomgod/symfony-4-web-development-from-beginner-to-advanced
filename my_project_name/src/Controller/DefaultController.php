@@ -12,12 +12,14 @@ use App\Entity\Author;
 use App\Entity\File;
 use App\Entity\Pdf;
 use App\Services\GiftsService;
+use App\Services\MySecondService;
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use App\Services\MyService;
+
 
 class DefaultController extends AbstractController
 {
@@ -254,8 +256,6 @@ class DefaultController extends AbstractController
 
         $users = $this->getDoctrine()->getRepository(User::class)->findAll();*/
 
-        // SERVICE PARAMETERS
-        
         
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
