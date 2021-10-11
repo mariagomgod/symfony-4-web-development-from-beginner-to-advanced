@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use App\Services\MyService;
 
 class DefaultController extends AbstractController
 {
@@ -28,7 +29,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/home", name="default", name="home")
      */
-    public function index(GiftsService $gifts, Request $request): Response
+    public function index(Request $request, MyService $service): Response
     {
         //$users = [];
 
@@ -242,7 +243,7 @@ class DefaultController extends AbstractController
         //dump($user);
 
         //DOCTRINE POLYMORPHIC QUERIES
-        $entityManager = $this->getDoctrine()->getManager();
+        /*$entityManager = $this->getDoctrine()->getManager();
         $author = $entityManager->getRepository(Author::class)->findByIdWithPdf(3);
         dump($author);
         foreach($author->getFiles() as $file)
@@ -251,12 +252,15 @@ class DefaultController extends AbstractController
             dump($file->getFileName());
         }
 
-        $users = $this->getDoctrine()->getRepository(User::class)->findAll();
+        $users = $this->getDoctrine()->getRepository(User::class)->findAll();*/
+
+        // SERVICE PARAMETERS
+        
         
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
-            'users' => $users,
-            'random_gift' => $gifts->gifts,
+            //'users' => $users,
+            //'random_gift' => $gifts->gifts,
         ]);
     }
 
