@@ -1,5 +1,5 @@
-imports:
-  - { resource: services.yaml }
+#imports:
+  ##- { resource: services.yaml }
 
-services:
-  App\Services\ServiceInterface: '@App\Services\MySecondService'
+#services:
+  #App\Services\ServiceInterface: '@App\Services\MySecondService'
