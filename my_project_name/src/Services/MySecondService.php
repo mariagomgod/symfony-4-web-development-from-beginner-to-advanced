@@ -2,18 +2,18 @@
 
 namespace App\Services;
 
-class MySecondService {
+class MySecondService implements ServiceInterface {
     
     public function __construct()
     {
-        dump('from second service');
+        dump('hello from second service');
         //$this->doSomething();
     }
 
-    public function someMethod()
-    {
-        return 'hello!';
-    }
+    //public function someMethod()
+    //{
+    //    return 'hello!';
+    //}
 
     //public function doSomething()
     //{

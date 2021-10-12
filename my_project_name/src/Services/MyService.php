@@ -4,17 +4,17 @@ namespace App\Services;
 use App\Services\MySecondService;
 use Doctrine\ORM\Event\PostFlushEventArgs;
 
-class MyService {
+class MyService implements ServiceInterface {
 
     public function __construct()
     {
-        dump('hello!');
+        dump('hello from MyService!');
         //dump($one);
         //dump($service);
         //$this->secService = $service;
     }
 
-    public function postFlush(PostFlushEventArgs $args)
+    /*public function postFlush(PostFlushEventArgs $args)
     {
         dump('hello postflush!');
         dump($args);
@@ -47,5 +47,5 @@ class MyService {
     //public function setSecondService(MySecondService $second_service)
     //{
     //    dump($second_service);
-    //}
+    //}*/
 }

@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use App\Services\MyService;
+use App\Services\ServiceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
@@ -32,7 +32,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/home", name="default", name="home")
      */
-    public function index(Request $request): Response
+    public function index(Request $request, ServiceInterface $service): Response
     {
         //$users = [];
 
@@ -274,11 +274,14 @@ class DefaultController extends AbstractController
         //dump($container->get('app.myservice'));
 
         // SERVICE-TAGS
-        $entityManager = $this->getDoctrine()->getManager();
+        /*$entityManager = $this->getDoctrine()->getManager();
         $user = $entityManager->getRepository(User::class)->find(1);
         $user->setName('Rob');
         $entityManager->persist($user);
-        $entityManager->flush();
+        $entityManager->flush();*/
+
+        // SERVICE INTERFACE
+        //$entityManager = $this->getDoctrine()->getManager();
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',

@@ -48,10 +48,12 @@ services:
     
     #App\Services\MyService: '@app.myservice'
 
-    App\Services\MyService:
-        tags:
-            - { name: doctrine.event_listener, event: postFlush } 
-            - { name: kernel.cache_clearer }
+   # App\Services\MyService:
+        #tags:
+            #- { name: doctrine.event_listener, event: postFlush } 
+            #- { name: kernel.cache_clearer }
+    
+    App\Services\ServiceInterface: '@App\Services\MyService'
     
     
     
