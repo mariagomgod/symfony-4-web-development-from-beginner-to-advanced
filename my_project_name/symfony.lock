@@ -293,6 +293,18 @@
     "symfony/proxy-manager-bridge": {
         "version": "v5.3.4"
     },
+    "symfony/requirements-checker": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "88980e1a5d7fe6ef1837e45bc44e9d38538b88ca"
+        },
+        "files": [
+            "./public/check.php"
+        ]
+    },
     "symfony/routing": {
         "version": "5.3",
         "recipe": {

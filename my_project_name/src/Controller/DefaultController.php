@@ -301,7 +301,7 @@ class DefaultController extends AbstractController
         dump(unserialize($posts->get()));*/
 
         // CACHE TAGS
-        $cache = new TagAwareAdapter(new FilesystemAdapter());
+        /*$cache = new TagAwareAdapter(new FilesystemAdapter());
         $acer = $cache->getItem('acer');
         $dell = $cache->getItem('dell');
         $ibm = $cache->getItem('ibm');
@@ -351,7 +351,10 @@ class DefaultController extends AbstractController
         dump($acer->get());
         dump($dell->get());
         dump($ibm->get());
-        dump($apple->get());
+        dump($apple->get());*/
+
+        // PROFILER TOOL IN SYMFONY
+        //dump($request, $this);
 
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',

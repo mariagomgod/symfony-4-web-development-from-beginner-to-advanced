@@ -21,6 +21,8 @@
         <li>Your template at <code><a href="{{ 'C:/Users/María/symfony-4-web-development-from-beginner-to-advanced/my_project_name/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
     </ul>
 
+    {{dump(controller_name)}}
+
     {{render(controller(
         'App\\Controller\\DefaultController::mostPopularPosts',
         {'number': 5}
